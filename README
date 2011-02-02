@@ -1,0 +1,5 @@
+Plugins for SleekXMPP to enable using Redis as a backend.
+
+Included plugins:
+    redis_roster -- Store roster subscription states.
+                    (Currently requires roster branch)
