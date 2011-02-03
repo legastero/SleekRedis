@@ -36,7 +36,7 @@ class redis_roster(base_plugin):
         save -- Save a roster item to the Redis server.
     """
 
-    def plugin_init(self, host='localhost', port=6379, db=0):
+    def plugin_init(self):
         """
         Initialize connection to the Redis server and set
         the roster backend.
