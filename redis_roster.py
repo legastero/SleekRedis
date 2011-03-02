@@ -52,6 +52,15 @@ class redis_roster(base_plugin):
                                    'pending_out', 'pending_in'))
         self.xmpp.roster.set_backend(self)
 
+    def entries(self, owner_jid, db_state=None):
+        """
+        Return all roster item JIDs for a given JID.
+        """
+        if owner_jid is None:
+            return self.redis.smembers('roster:owners')
+        else:
+            return self.redis.smembers('roster:%s:entries' % owner_jid)
+
     def load(self, owner_jid, jid, db_state=None):
         """
         Load a roster item from the datastore.
@@ -96,6 +105,8 @@ class redis_roster(base_plugin):
                         a value equivalent to 'row_id' will be
                         stored here.
         """
+        self.redis.sadd('roster:owners', owner_jid)
+        self.redis.sadd('roster:%s:entries' % owner_jid, jid)
         item_key = 'roster:%s:%s' % (owner_jid, jid)
         groups_key = 'roster:groups:%s:%s' % (owner_jid, jid)
         for field in self.fields:
