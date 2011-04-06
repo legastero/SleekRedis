@@ -4,8 +4,6 @@ Included plugins:
     redis_roster -- Store roster subscription states.
                     (Currently requires roster branch)
     redis_adhoc  -- Store adhoc command session data.
-                    Requires included xep_0050 implementation.
+                    (Currently requires develop branch)
     redis_id     -- Synchronize stanza ID values between
                     clustered agents.
-    xep_0050     -- Include new implementation of xep_0050
-                    until it is added to SleekXMPP.
